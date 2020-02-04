@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE mapper PUBLIC ********xxxxx********>-->
+<mapper namespace="com.dxl.wechatsell.dataobject.mapper">
+
+    <resultMap id="BaseResultMap" type="com.dxl.wechatsell.dataobject.ProductCategory">
+        <id column="category_id" property="categoryId" jdbcType="Integer"></id>
+    </resultMap>
+
+    <select id="findByCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select category_id
+        from product_category
+        where category_id = #{categoryId}
+    </select>
+</mapper>
