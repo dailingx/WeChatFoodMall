@@ -35,6 +35,7 @@ public class BuyerProductController {
 	private ProductCategoryService productCategoryService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
+//	当第一次访问进来的时候，会访问方法里并返回Result对象，这个注解会把这个对象存到redis里作为缓存，后面访问就不会到方法里了而是直接取redis缓存
 	@Cacheable(cacheNames = "product", key = "123")
 	public Result list() {
 		//1.查询所有的上架商品

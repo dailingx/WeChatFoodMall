@@ -12,6 +12,8 @@ import com.dxl.wechatsell.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.StringUtils;
@@ -78,6 +80,10 @@ public class SellerProductController {
 
 //	新增和更新都使用这一方法
 	@PostMapping("/save")
+//	更新了商品信息需要更新存在redis里的缓存。每次访问这个方法都会进到这个方法里，然后把返回的Result对象更新写到redis缓存里
+	@CachePut(cacheNames = "product", key = "123")
+//	这是清除缓存
+//	@CacheEvict(cacheNames = "product", key = "123")
 	public Result save(@Valid ProductForm productForm,
 	                   BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {

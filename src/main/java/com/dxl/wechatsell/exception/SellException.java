@@ -20,8 +20,20 @@ public class SellException extends RuntimeException {
 		this.code = resultEnum.getCode();
 	}
 
+	public SellException(Throwable cause) {
+		super(cause);
+	}
+
 	public SellException(Integer code, String message) {
 		super(message);
 		this.code = code;
+	}
+
+	public SellException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public SellException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
 	}
 }

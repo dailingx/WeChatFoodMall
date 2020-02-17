@@ -8,6 +8,7 @@ import com.dxl.wechatsell.enums.ProductStatusEnum;
 import com.dxl.wechatsell.enums.ResultEnum;
 import com.dxl.wechatsell.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.Pageable;
@@ -22,12 +23,15 @@ import java.util.List;
  * @Date：Created in 9:00 on 2019/10/24.
  */
 @Service
+//可以在这里写上注解注明这个类里缓存的cacheNames配置，在每个方法上的注解就不需要写cacheNames参数了
+//@CacheConfig(cacheNames = "product")
 public class ProductInfoServiceImpl implements ProductInfoService {
 
 	@Autowired
 	private ProductInfoDao productInfoDao;
 
 	@Override
+//	也可以在service层加缓存，会把方法返回的对象序列化存到redis里，因此需要将对象实现序列化接口.CachePut可以更新缓存.key不填或为""则key为方法的参数内容,key动态变化:key="#productId".还可以加condition参数来对缓存进行过滤,还有unless属性
 	public ProductInfo findOne(String productId) {
 		return productInfoDao.findOne(productId);
 	}

@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/buyer/order")
 @Slf4j
-public class BuyerOrderController {
+public class BuyerOrderController implements Serializable {
+
+	public static final long serialVersionUID = 5877549321548546283L;
 
 	@Autowired
 	private OrderService orderService;
