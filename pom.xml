@@ -82,6 +82,8 @@
     </dependencies>
 
     <build>
+        <!--指定打包出来的包名字-->
+        <finalName>sell</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
