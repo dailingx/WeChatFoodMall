@@ -1,0 +1,49 @@
+#生产环境不打印sql语句，sql.show
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/wechatsell?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+  jackson:
+#    在配置文件中设定，则设定所有的实体类转json时过滤null字段
+    default-property-inclusion: non_null
+  redis:
+    host: localhost
+    pool: 6379
+#    password:
+server:
+#  请求url的最前面部分，127.0.0.1::8080/sell/**
+  context-path: /sell
+#logging:
+#  pattern:
+#    console: "&d - %msg&n"
+#  path: /var/log/tomcat/
+#  file: /var/log/tomcat/sell.log
+#  level: debug
+
+wechat:
+  mpAppId: abcd1234
+  mpAppSecret: 2965751a*****
+  openAppId: wx****
+  openAppSercret: open***
+  mchId: 1234556
+  mchKey: 55211455*****
+  keyPath: /var/weixin_cert/h5.p12
+  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
+  templateId:
+    orderStatus: test*****
+
+projectUrl:
+  wechatMpAuthorize: http://sell.natapp4.cc
+  wechatOpenAuthorize: http://sell.natapp4.cc
+  sell: http://sell.natapp4.cc
+
+logging:
+  level:
+#    设定这个包下的日志级别，sql成功时会打印具体的sql语句
+    com.dxl.wechatsell.dataobject.mapper: trace
+
+mybatis:
+#  mybatis扫描xml文件来读到sql语句
+  mapper-locations: classpath:mapper/*.xml
